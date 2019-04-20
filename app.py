@@ -24,7 +24,7 @@ def index():
     return render_template('index.html', mars=mars)
 
 @app.route("/scrape")
-def scrap():
+def scrape():
 
     # Run scrapped functions
     mars_info = db.mars.find_one()
