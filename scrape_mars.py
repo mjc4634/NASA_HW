@@ -256,6 +256,7 @@ def scrape():
         "News_Title": news_title,
         "Paragraph_Text": news_p,
         "Most_Recent_Mars_Image": featured_image_url,
+        "Mars_Facts": table,
         "Mars_Weather": mars_weather,
         "mars_h": hemisphere_image_urls
             }
