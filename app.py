@@ -5,14 +5,10 @@ import pymongo
 
 app = Flask(__name__)
 
-# Create connection variable
-conn = 'mongodb://localhost:27017'
+# Use PyMongo to establish Mongo connection
+app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_data"
+mongo = PyMongo(app)
 
-# Pass connection to the pymongo instance.
-client = pymongo.MongoClient(conn)
-
-# Connect to a database. Will create one if not already available.
-db = client.mars_data
 
 
 #app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_data"
@@ -20,14 +16,14 @@ db = client.mars_data
 
 @app.route('/')
 def index():
-    mars = db.mars.find_one()
+    mars = mongo.db.mars.find_one()
     return render_template('index.html', mars=mars)
 
 @app.route("/scrape")
 def scrape():
 
     # Run scrapped functions
-    mars_info = db.mars.find_one()
+    mars_info = mongo.db.mars
     mars_data = scrape_mars.scrape()
     mars_info.update({}, mars_data, upsert=True)
 
