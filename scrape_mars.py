@@ -162,7 +162,7 @@ def scrape():
         html = browser.html
         table = pd.read_html(url)[0]
         table.columns = ['Names', 'Value']
-        mars_facts_html = table.to_html(index=False, justify='center')
+        table = table.to_html(index=False, justify='center')
         time.sleep(2)
 
 
